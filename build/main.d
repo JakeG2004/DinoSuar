@@ -112,12 +112,16 @@ main.o: /home/jake/Documents/Extra/DinoSaur/source/main.cpp \
  /opt/devkitpro/libnds/include/nds/arm9/trig_lut.h \
  /opt/devkitpro/libnds/include/nds/arm9/video.h \
  /opt/devkitpro/libnds/include/nds/arm9/videoGL.h \
+ /opt/devkitpro/libnds/include/maxmod9.h \
+ /opt/devkitpro/libnds/include/mm_types.h \
  /home/jake/Documents/Extra/DinoSaur/source/Dino.h \
  /home/jake/Documents/Extra/DinoSaur/source/Sprite.h \
  /home/jake/Documents/Extra/DinoSaur/source/SpriteManager.h \
  /home/jake/Documents/Extra/DinoSaur/source/Cactus.h \
  /home/jake/Documents/Extra/DinoSaur/source/ScrollingElement.h \
  /home/jake/Documents/Extra/DinoSaur/source/GameManager.h \
+ /home/jake/Documents/Extra/DinoSaur/build/soundbank.h \
+ /home/jake/Documents/Extra/DinoSaur/build/soundbank_bin.h \
  /home/jake/Documents/Extra/DinoSaur/source/bg_test.h \
  /home/jake/Documents/Extra/DinoSaur/source/Dino_Walk.h \
  /home/jake/Documents/Extra/DinoSaur/source/Cacti.h
@@ -234,12 +238,16 @@ main.o: /home/jake/Documents/Extra/DinoSaur/source/main.cpp \
 /opt/devkitpro/libnds/include/nds/arm9/trig_lut.h:
 /opt/devkitpro/libnds/include/nds/arm9/video.h:
 /opt/devkitpro/libnds/include/nds/arm9/videoGL.h:
+/opt/devkitpro/libnds/include/maxmod9.h:
+/opt/devkitpro/libnds/include/mm_types.h:
 /home/jake/Documents/Extra/DinoSaur/source/Dino.h:
 /home/jake/Documents/Extra/DinoSaur/source/Sprite.h:
 /home/jake/Documents/Extra/DinoSaur/source/SpriteManager.h:
 /home/jake/Documents/Extra/DinoSaur/source/Cactus.h:
 /home/jake/Documents/Extra/DinoSaur/source/ScrollingElement.h:
 /home/jake/Documents/Extra/DinoSaur/source/GameManager.h:
+/home/jake/Documents/Extra/DinoSaur/build/soundbank.h:
+/home/jake/Documents/Extra/DinoSaur/build/soundbank_bin.h:
 /home/jake/Documents/Extra/DinoSaur/source/bg_test.h:
 /home/jake/Documents/Extra/DinoSaur/source/Dino_Walk.h:
 /home/jake/Documents/Extra/DinoSaur/source/Cacti.h:

@@ -118,7 +118,11 @@ Cactus.o: /home/jake/Documents/Extra/DinoSaur/source/Cactus.cpp \
  /home/jake/Documents/Extra/DinoSaur/source/SpriteManager.h \
  /home/jake/Documents/Extra/DinoSaur/source/Dino.h \
  /home/jake/Documents/Extra/DinoSaur/source/Cacti.h \
- /home/jake/Documents/Extra/DinoSaur/source/GameManager.h
+ /home/jake/Documents/Extra/DinoSaur/source/GameManager.h \
+ /opt/devkitpro/libnds/include/maxmod9.h \
+ /opt/devkitpro/libnds/include/mm_types.h \
+ /home/jake/Documents/Extra/DinoSaur/build/soundbank.h \
+ /home/jake/Documents/Extra/DinoSaur/build/soundbank_bin.h
 /home/jake/Documents/Extra/DinoSaur/source/Cactus.h:
 /home/jake/Documents/Extra/DinoSaur/source/ScrollingElement.h:
 /home/jake/Documents/Extra/DinoSaur/source/Sprite.h:
@@ -239,3 +243,7 @@ Cactus.o: /home/jake/Documents/Extra/DinoSaur/source/Cactus.cpp \
 /home/jake/Documents/Extra/DinoSaur/source/Dino.h:
 /home/jake/Documents/Extra/DinoSaur/source/Cacti.h:
 /home/jake/Documents/Extra/DinoSaur/source/GameManager.h:
+/opt/devkitpro/libnds/include/maxmod9.h:
+/opt/devkitpro/libnds/include/mm_types.h:
+/home/jake/Documents/Extra/DinoSaur/build/soundbank.h:
+/home/jake/Documents/Extra/DinoSaur/build/soundbank_bin.h:

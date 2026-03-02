@@ -2,6 +2,9 @@
 #include "Cacti.h"
 #include "Dino.h"
 #include "GameManager.h"
+#include <maxmod9.h>    // Required for mmEffectEx 
+#include "soundbank.h" // Required for SFX_HIT ID 
+#include "soundbank_bin.h"
 
 Cactus::Cactus(OamState* newOam, Dino* player) : ScrollingElement(newOam, SpriteSize_64x64, SpriteColorFormat_256Color, 6)
 {
@@ -18,6 +21,12 @@ Cactus::Cactus(OamState* newOam, Dino* player) : ScrollingElement(newOam, Sprite
         
         dmaCopy(sourceFrame, gfx[i], 4096);
     }
+
+    mmInitDefaultMem((mm_addr)soundbank_bin);
+
+    // 2. Load the specific sound effect into memory
+    // (Ensure SFX_HIT is defined in your soundbank.h)
+    mmLoadEffect( SFX_HIT );
 }
 
 void Cactus::Update()
@@ -42,6 +51,20 @@ void Cactus::CalculateCollision()
 
     if(((dx * dx) + (dy * dy)) < collisionRadius)
     {
+        if(GameManager::getInstance() -> gameOver == 0)
+        {
+            // --- PLAY JUMP SOUND ---
+            // We define the sound effect inline here so it triggers on jump
+            mm_sound_effect hit_sfx = {
+                { SFX_HIT },             // id from soundbank.h 
+                (int)(1.0f * (1<<10)),   // rate (normal speed) 
+                0,                       // handle 
+                255,                     // volume (max) 
+                128,                     // panning (center) 
+            };
+
+            mmEffectEx(&hit_sfx);      // Play the effect 
+        }
         GameManager::getInstance() -> GameOver(dino);
     }
 }

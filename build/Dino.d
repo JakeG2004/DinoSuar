@@ -116,7 +116,11 @@ Dino.o: /home/jake/Documents/Extra/DinoSaur/source/Dino.cpp \
  /opt/devkitpro/libnds/include/nds/arm9/videoGL.h \
  /home/jake/Documents/Extra/DinoSaur/source/SpriteManager.h \
  /home/jake/Documents/Extra/DinoSaur/source/Dino_Walk.h \
- /home/jake/Documents/Extra/DinoSaur/source/GameManager.h
+ /home/jake/Documents/Extra/DinoSaur/source/GameManager.h \
+ /opt/devkitpro/libnds/include/maxmod9.h \
+ /opt/devkitpro/libnds/include/mm_types.h \
+ /home/jake/Documents/Extra/DinoSaur/build/soundbank.h \
+ /home/jake/Documents/Extra/DinoSaur/build/soundbank_bin.h
 /home/jake/Documents/Extra/DinoSaur/source/Dino.h:
 /home/jake/Documents/Extra/DinoSaur/source/Sprite.h:
 /opt/devkitpro/libnds/include/nds.h:
@@ -235,3 +239,7 @@ Dino.o: /home/jake/Documents/Extra/DinoSaur/source/Dino.cpp \
 /home/jake/Documents/Extra/DinoSaur/source/SpriteManager.h:
 /home/jake/Documents/Extra/DinoSaur/source/Dino_Walk.h:
 /home/jake/Documents/Extra/DinoSaur/source/GameManager.h:
+/opt/devkitpro/libnds/include/maxmod9.h:
+/opt/devkitpro/libnds/include/mm_types.h:
+/home/jake/Documents/Extra/DinoSaur/build/soundbank.h:
+/home/jake/Documents/Extra/DinoSaur/build/soundbank_bin.h:

@@ -1,7 +1,11 @@
 #include <nds.h>
+#include <maxmod9.h>
 #include "Dino.h"
 #include "Cactus.h"
 #include "GameManager.h"
+#include <maxmod9.h>    // Required for mmEffectEx 
+#include "soundbank.h" // Required for SFX_HIT ID 
+#include "soundbank_bin.h"
 
 // Background
 #include "bg_test.h"
@@ -31,9 +35,33 @@ int main(void)
 
     int bgScroll = 0;
 
+    mmInitDefaultMem((mm_addr)soundbank_bin);
+
+    mmLoad( SFX_JUMP );
+    // --- PLAY JUMP SOUND ---
+    // We define the sound effect inline here so it triggers on jump
+    mm_sound_effect music_sfx = {
+        { SFX_MUSIC },             // id from soundbank.h 
+        (int)(1.0f * (1<<10)),   // rate (normal speed) 
+        0,                       // handle 
+        255,                     // volume (max) 
+        128,                     // panning (center) 
+    };
+    
+    int musicTimer = 0;
+    int songLengthInFrames = 60 * 66;
+
     // Update loop
     while(1) 
     {
+        if(musicTimer <= 0)
+        {
+            mmEffectEx(&music_sfx);
+            musicTimer = songLengthInFrames;
+        }
+
+        musicTimer--;
+
         // Get the keys
         scanKeys();
         int keys = keysHeld();

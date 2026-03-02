@@ -1,6 +1,9 @@
 #include "Dino.h"
 #include "Dino_Walk.h"
 #include "GameManager.h"
+#include <maxmod9.h>    // Required for mmEffectEx 
+#include "soundbank.h" // Required for SFX_HIT ID 
+#include "soundbank_bin.h"
 
 Dino::Dino(OamState* newOam, int newJumpKey, int newCrouchKey) : Sprite(newOam, SpriteSize_64x64, SpriteColorFormat_256Color, 6) 
 {
@@ -10,19 +13,22 @@ Dino::Dino(OamState* newOam, int newJumpKey, int newCrouchKey) : Sprite(newOam, 
     y = 110;
     originalY = y;
 
-    // Inside Dino constructor
     for(int i = 0; i < numSprites; i++) {
-        // Calculate where this frame starts in the source Tiles array
-        // 64x64 at 8bpp (256 colors) is 4096 bytes per frame
         u8* sourceFrame = (u8*)Dino_WalkTiles + (i * 4096); 
-        
         dmaCopy(sourceFrame, gfx[i], 4096);
     }
+
+    mmInitDefaultMem((mm_addr)soundbank_bin);
+
+    // 2. Load the specific sound effect into memory
+    // (Ensure SFX_HIT is defined in your soundbank.h)
+    mmLoadEffect( SFX_JUMP );
 }
 
 void Dino::Update(int keys) 
 {
-    // Check For Jump
+    // Use keysDown from your main loop or check for the specific frame 
+    // to prevent the sound from spamming every frame.
     if((keys & jumpKey) && y == originalY) 
     {
         Jump();
@@ -36,20 +42,27 @@ void Dino::Update(int keys)
     }
     
     ApplyPhysics();
-
     Animate();
-
     render(curFrame, 64, 64);
 }
 
 void Dino::Jump() 
 {
-    if(GameManager::getInstance() -> gameOver != 0)
-    {
-        return;
-    }
+    if(GameManager::getInstance()->gameOver != 0) return;
 
     vy = -jumpForce; 
+
+    // --- PLAY JUMP SOUND ---
+    // We define the sound effect inline here so it triggers on jump
+    mm_sound_effect jump_sfx = {
+        { SFX_JUMP },             // id from soundbank.h 
+        (int)(1.0f * (1<<10)),   // rate (normal speed) 
+        0,                       // handle 
+        255,                     // volume (max) 
+        128,                     // panning (center) 
+    };
+    
+    mmEffectEx(&jump_sfx);      // Play the effect 
 }
 
 void Dino::Crouch()
@@ -62,7 +75,6 @@ void Dino::ApplyPhysics()
     y += (int)vy;
     vy += gravity;
 
-    // Stop on ground
     if(y >= originalY) 
     {
         vy = 0;
@@ -79,52 +91,33 @@ void Dino::Animate()
         {
             if(isCrouching == 0)
             {
-                if(curFrame >= 2)
-                {
-                    curFrame = 0;
-                }
+                if(curFrame >= 2) curFrame = 0;
 
                 if(++frameTimer > 5) 
                 {
                     frameTimer = 0;
                     curFrame ^= 1;
                 }
-            } else{
+            } else {
                 if(++frameTimer > 5) 
                 {
                     frameTimer = 0;
-                    // Toggles between 0 and 1, then adds 4 to shift to the crouch frames
                     curFrame = (curFrame == 4) ? 5 : 4; 
                 }
             }
             break;
         }
-
         case 1:
         {
-            if(gm -> topDino == this)
-            {
-                curFrame = 2;
-                return;
-            }
-
+            if(gm -> topDino == this) { curFrame = 2; return; }
             curFrame = 3;
             return;
         }
-
         case 2:
         {
-            if(gm -> gameOver == 2)
-            {
-                if(gm -> botDino == this)
-                {
-                    curFrame = 2;
-                    return;
-                }
-
-                curFrame = 3;
-                return;
-            }
+            if(gm -> botDino == this) { curFrame = 2; return; }
+            curFrame = 3;
+            return;
         }
     }
 }
