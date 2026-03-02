@@ -44,7 +44,7 @@ void GameManager::GameOver(Dino* player)
         iprintf("TOP PLAYER WINS!");
     }
     
-    iprintf("\x1b[12;8HPRESS START TO RESTART");
+    iprintf("\x1b[10;10H[12;8HPRESS START TO RESTART");
 }
 
 void GameManager::Reset()
