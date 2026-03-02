@@ -31,7 +31,7 @@ void Cactus::Update()
 
 void Cactus::OnReset()
 {
-    curFrame = rand() % 5;
+    curFrame = rand() % 2;
     GameManager::getInstance() -> IncrementSpeed();
 }
 
@@ -42,6 +42,6 @@ void Cactus::CalculateCollision()
 
     if(((dx * dx) + (dy * dy)) < collisionRadius)
     {
-        //GameManager::getInstance() -> GameOver(dino);
+        GameManager::getInstance() -> GameOver(dino);
     }
 }
