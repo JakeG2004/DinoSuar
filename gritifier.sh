@@ -1,0 +1,1 @@
+grit source/sprites/$1.png -ftc -gB8 -gTFF00FF -m! -p && mv $1.h source && mv $1.c source
