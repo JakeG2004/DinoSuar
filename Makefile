@@ -1,3 +1,11 @@
+# The title that appears on the DS menu (up to 128 characters)
+APP_TITLE	:= DinoSaur
+APP_AUTHOR	:= Jake Gendreau
+APP_DESCRIPTION	:= A fun dinosaur jumping game for two players.
+
+# The path to your 32x32 BMP icon
+#ICON		:= icon.bmp
+
 #---------------------------------------------------------------------------------
 .SUFFIXES:
 #---------------------------------------------------------------------------------

@@ -27,6 +27,15 @@ Dino::Dino(OamState* newOam, int newJumpKey, int newCrouchKey) : Sprite(newOam, 
 
 void Dino::Update(int keys) 
 {
+    if((GameManager::getInstance() -> singlePlayer == 1) && this == GameManager::getInstance() -> botDino)
+    {
+        this -> isHidden = true;
+        render(curFrame, 64, 64);
+        return;
+    } else {
+        this -> isHidden = false;
+    }
+
     // Use keysDown from your main loop or check for the specific frame 
     // to prevent the sound from spamming every frame.
     if((keys & jumpKey) && y == originalY) 

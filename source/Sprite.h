@@ -19,6 +19,7 @@ public:
     SpriteSize size;
     SpriteColorFormat colorFormat;
     int spriteID;
+    bool isHidden = false;
 
     Sprite(OamState* objOam, SpriteSize objSize, SpriteColorFormat objFormat, int newNumSprites)
     {
@@ -47,7 +48,7 @@ public:
 
         // Use the internal spriteID instead of passing one in
         oamSet(oam, spriteID, x, y, 0, 0, size, colorFormat, 
-            framePtr, -1, false, false, false, false, false);
+            framePtr, -1, false, isHidden, false, false, false);
     }
 
     void SetPosition(int newX, int newY)

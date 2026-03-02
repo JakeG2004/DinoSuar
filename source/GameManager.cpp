@@ -21,7 +21,7 @@ GameManager* GameManager::getInstance() {
 }
 
 void GameManager::IncrementSpeed() {
-    gameSpeed += 0.05f;
+    gameSpeed += 0.1f;
 }
 
 void GameManager::GameOver(Dino* player) 
@@ -36,15 +36,8 @@ void GameManager::GameOver(Dino* player)
         gameOver = 2; // Bottom player hit a cactus, Top player wins
     }
 
-    iprintf("\x1b[10;10H"); // ANSI escape code: Row 10, Col 10
+    DrawGameOver();
 
-    if (gameOver == 1) {
-        iprintf("BOTTOM PLAYER WINS!");
-    } else {
-        iprintf("TOP PLAYER WINS!");
-    }
-    
-    iprintf("\x1b[10;10H[12;8HPRESS START TO RESTART");
 }
 
 void GameManager::Reset()
@@ -62,4 +55,33 @@ void GameManager::Update(int keys)
     {
         GameManager::Reset();
     }
+}
+
+void GameManager::DrawGameOver()
+{
+    // --- NEW: TOP INSTRUCTIONS ---
+    // Position at Row 2, Column 5
+    iprintf("\x1b[2;5HUP / X to JUMP");
+    // Position at Row 3, Column 5
+    iprintf("\x1b[3;5HDOWN / B to CROUCH");
+    iprintf("\x1b[4;5HSelect for solo / co-op");
+    iprintf("\x1b[5;5HCurrent: ");
+    iprintf("\x1b[5;14H%s", singlePlayer == 1 ? "Single Player" : "  Multiplayer");
+
+    // --- WINNER TEXT ---
+    iprintf("\x1b[10;7H"); // Moved column slightly for centering
+    if (gameOver == 1) {
+        iprintf("BOTTOM PLAYER WINS!");
+    } else {
+        iprintf("TOP PLAYER WINS!");
+    }
+    
+    // --- RESTART TEXT ---
+    // Using \n for a new line instead of complex escape codes can be cleaner
+    iprintf("\x1b[12;5HPRESS START TO RESTART");
+}
+
+void GameManager::DrawScore(int newScore)
+{
+    iprintf("\x1b[0;1HSCORE: %i", newScore);
 }

@@ -8,6 +8,7 @@
 
 Cactus::Cactus(OamState* newOam, Dino* player) : ScrollingElement(newOam, SpriteSize_64x64, SpriteColorFormat_256Color, 6)
 {
+
     y = 110;
     posX = 230.0f; 
 
@@ -46,6 +47,11 @@ void Cactus::OnReset()
 
 void Cactus::CalculateCollision()
 {
+    if((GameManager::getInstance() -> singlePlayer == 1) && this == GameManager::getInstance() -> botCactus)
+    {
+        return;
+    }
+
     int dx = abs(x - dino -> x);
     int dy = abs(y - dino -> y);
 

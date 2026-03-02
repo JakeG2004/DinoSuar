@@ -28,11 +28,14 @@ public:
 
     float gameSpeed;
     int gameOver;
+    int singlePlayer = 0;
 
     void IncrementSpeed();
     void GameOver(Dino* player);
     void Reset();
     void Update(int keys);
+    void DrawGameOver();
+    void DrawScore(int score);
 };
 
 #endif

@@ -40,6 +40,8 @@ int main(void)
     int musicTimer = 0;
     int songLengthInFrames = 60 * 66;
 
+    int score = 0;
+
     // Update loop
     while(1) 
     {
@@ -63,6 +65,12 @@ int main(void)
         // Get the keys
         scanKeys();
         int keys = keysHeld();
+        int down = keysDown();
+
+        if(down & KEY_SELECT)
+        {
+            gm -> singlePlayer = (gm -> singlePlayer) == 1 ? 0 : 1;
+        }
 
         gm -> Update(keys);
 
@@ -79,6 +87,16 @@ int main(void)
         // Update the cacti
         topCactus.Update();
         bottomCactus.Update();
+
+        if(gm -> gameOver != 0)
+        {
+            score = 0;
+            gm -> DrawGameOver();
+        } else {
+            gm -> DrawScore(score);
+        }
+
+        score++;
 
         // Wait for screen to finish drawing
         swiWaitForVBlank();
